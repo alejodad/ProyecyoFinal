@@ -1,0 +1,6 @@
+C:\Users\JENNIFER\Documents\Visual Studio 2017\Projects\ProyecyoFinal\Modelo\bin\Debug\Modelo.dll
+C:\Users\JENNIFER\Documents\Visual Studio 2017\Projects\ProyecyoFinal\Modelo\bin\Debug\Modelo.pdb
+C:\Users\JENNIFER\Documents\Visual Studio 2017\Projects\ProyecyoFinal\Modelo\obj\Debug\Modelo.csprojResolveAssemblyReference.cache
+C:\Users\JENNIFER\Documents\Visual Studio 2017\Projects\ProyecyoFinal\Modelo\obj\Debug\Modelo.csproj.CoreCompileInputs.cache
+C:\Users\JENNIFER\Documents\Visual Studio 2017\Projects\ProyecyoFinal\Modelo\obj\Debug\Modelo.dll
+C:\Users\JENNIFER\Documents\Visual Studio 2017\Projects\ProyecyoFinal\Modelo\obj\Debug\Modelo.pdb

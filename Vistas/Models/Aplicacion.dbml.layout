@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Aplicacion">
+  <DataContextMoniker Name="/AplicacionDataContext" />
+  <nestedChildShapes>
+    <classShape Id="4ea5b45e-67b4-454d-9148-b32909e978f6" absoluteBounds="0.75, 1.5, 2, 1.3862939453125003">
+      <DataClassMoniker Name="/AplicacionDataContext/tbl_tipo_persona" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ff13ff13-fce0-47fe-8357-c9a6ebcac24c" absoluteBounds="0.765, 1.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="513f01bd-5c2a-4eed-b6c3-b2c887ce7c69" absoluteBounds="4.125, 1.75, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/AplicacionDataContext/tbl_persona" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9b82be7e-40eb-4cd2-8e52-f6791e27045a" absoluteBounds="4.14, 2.21, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 2.31814697265625); (4.125 : 2.31814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AplicacionDataContext/tbl_tipo_persona/tbl_tipo_persona_tbl_persona" />
+      <nodes>
+        <classShapeMoniker Id="4ea5b45e-67b4-454d-9148-b32909e978f6" />
+        <classShapeMoniker Id="513f01bd-5c2a-4eed-b6c3-b2c887ce7c69" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

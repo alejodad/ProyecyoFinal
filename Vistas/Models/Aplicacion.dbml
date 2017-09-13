@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AplicacionWeb" Class="AplicacionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=HP\SQLEXPRESS;Initial Catalog=AplicacionWeb;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Aplicacion" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tbl_tipo_persona" Member="tbl_tipo_persona">
+    <Type Name="tbl_tipo_persona">
+      <Column Name="idTipoPersona" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombreTipoPersona" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="estado" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_tipo_persona_tbl_persona" Member="tbl_persona" ThisKey="idTipoPersona" OtherKey="idTipoPersona" Type="tbl_persona" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_persona" Member="tbl_persona">
+    <Type Name="tbl_persona">
+      <Column Name="idPersona" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombrePersona" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="apellidoPersona" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="usuarioPersona" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="contrasenaPersona" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="salt" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="edad" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="estado" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="idTipoPersona" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="emailPersona" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="tbl_tipo_persona_tbl_persona" Member="tbl_tipo_persona" ThisKey="idTipoPersona" OtherKey="idTipoPersona" Type="tbl_tipo_persona" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.sp_CrearMensajero" Method="sp_CrearMensajero">
+    <Parameter Name="nombrePersona" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="apellidoPersona" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="usuario" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="contrasenaPersona" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="salt" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="edad" Type="System.Byte" DbType="TinyInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_CrearCliente" Method="sp_CrearCliente">
+    <Parameter Name="nombrePersona" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="apellidoPersona" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="usuario" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="contrasenaPersona" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="salt" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="edad" Type="System.Byte" DbType="TinyInt" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
