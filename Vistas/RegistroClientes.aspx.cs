@@ -18,8 +18,7 @@ namespace Vistas
         {
             if (!IsPostBack)
             {
-                datosClientes.DataSource = instanciaBd.tbl_persona.Where(x => x.idTipoPersona == 2).ToList();
-                datosClientes.DataBind();
+                Listar();
             }
         }
 
@@ -29,7 +28,7 @@ namespace Vistas
             {
                 Guardar();
             }
-            else
+            else if(btnGuardar.Text == "Actualizar")
             {
                 Actualizar();
             }
@@ -55,11 +54,18 @@ namespace Vistas
             {
                 int index = int.Parse(e.CommandArgument.ToString());
                 int celdaElegida = int.Parse(datosClientes.Rows[index].Cells[0].Text);
+                var personaBorrar = instanciaBd.tbl_persona.Where(x => x.idPersona == celdaElegida).FirstOrDefault();
+                instanciaBd.tbl_persona.DeleteOnSubmit(personaBorrar);
+                instanciaBd.SubmitChanges();
+                Listar();
             }
         }
 
         private void Guardar()
         {
+            pnlAlertaError.Visible = false;
+            PanelAlerta.Visible = false;
+
             string nombre = txtNombrePersona.Text.Trim();
             string apellido = txtApellido.Text.Trim();
             string user = txtUsuario.Text.Trim();
@@ -85,36 +91,41 @@ namespace Vistas
             {
                 instanciaBd.tbl_persona.InsertOnSubmit(una);
                 instanciaBd.SubmitChanges();
-                datosClientes.DataSource = instanciaBd.tbl_persona.Where(x => x.idTipoPersona == 2).ToList();
-                datosClientes.DataBind();
                 LimpiarCmapos();
+                Listar();
+                PanelAlerta.Visible = true;
             }
             catch (Exception)
             {
 
-                throw;
+                pnlAlertaError.Visible = true;
             }
         }
 
         private void Actualizar()
         {
+
+            pnlAlertaError.Visible = false;
+            PanelAlerta.Visible = false;
+
             int idPersona = int.Parse(txtid.Text);
             var persona = instanciaBd.tbl_persona.Where(x => x.idPersona == idPersona).FirstOrDefault();
-            persona.nombrePersona = txtNombrePersona.Text;
-            persona.apellidoPersona = txtApellido.Text;
+            persona.nombrePersona = txtNombrePersona.Text.Trim();
+            persona.apellidoPersona = txtApellido.Text.Trim();
+            persona.edad = Convert.ToByte(txtEdad.Text);
             try
             {
                 instanciaBd.SubmitChanges();
-                datosClientes.DataSource = instanciaBd.tbl_persona.Where(x => x.idTipoPersona == 2).ToList();
-                datosClientes.DataBind();
                 LimpiarCmapos();
                 btnGuardar.Text = "Guardar";
                 btnGuardar.CssClass = "btn btn-success";
+                Listar();
+                PanelAlerta.Visible = true;
             }
             catch (Exception)
             {
 
-                throw;
+                pnlAlertaError.Visible = true;
             }
 
         }
@@ -126,6 +137,11 @@ namespace Vistas
             txtid.Text = "";
             txtNombrePersona.Text = "";
             txtUsuario.Text = "";
+        }
+        private void Listar()
+        {
+            datosClientes.DataSource = instanciaBd.tbl_persona.Where(x => x.idTipoPersona == 2).ToList();
+            datosClientes.DataBind();
         }
     }
 }

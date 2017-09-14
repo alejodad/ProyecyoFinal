@@ -80,6 +80,14 @@ namespace Modelo
             get { return tipoPersona; }
             set { tipoPersona = value; }
         }
+        private string email;
+
+        public string gsEmail
+        {
+            get { return email; }
+            set { email = value; }
+        }
+
 
         #region atributos
 
@@ -118,6 +126,7 @@ namespace Modelo
                 parametro = new SqlParameter("@contrasenaPersona", SqlDbType.VarChar, 100);
                 parametro.Value = this.gsPass;
                 comando.Parameters.Add(parametro);
+                
 
                 parametro = new SqlParameter("@salt", SqlDbType.VarChar, 100);
                 parametro.Value = this.gsSalt;
@@ -141,10 +150,83 @@ namespace Modelo
             return RowsAffected;
         }
 
-        public int sp_CrearClienteo()
+        public int ActualizarCliente()
         {
             int RowsAffected = 0;
-            return RowsAffected;
+            using (cnx = new SqlConnection(cadenaConexion))
+            {
+                cnx.Open();
+                comando = new SqlCommand("update tbl_persona set nombrePersona = @nombrePersona,apellidoPersona = @apellidoPersona,edad = @edad where idPersona=@idPersona", cnx);
+                comando.CommandType = CommandType.Text;
+                parametro = new SqlParameter("@nombrePersona", gsNombrePersona);
+                comando.Parameters.Add(parametro);
+                parametro = new SqlParameter("@apellidoPersona", gsApellidoPersona);
+                comando.Parameters.Add(parametro);
+                parametro = new SqlParameter("@edad", gsEdad);
+                comando.Parameters.Add(parametro);
+                parametro = new SqlParameter("@idPersona", gsIdPerson);
+                comando.Parameters.Add(parametro);
+
+                try
+                {
+                    RowsAffected = comando.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+
+                    RowsAffected = 0;
+                }
+            }
+                return RowsAffected;
         }
+
+        public int EliminarCliente()
+        {
+            int RowsAffected = 0;
+            using (cnx = new SqlConnection(cadenaConexion))
+            {
+                cnx.Open();
+                comando = new SqlCommand("delete from tbl_persona where idPersona = @idPersona",cnx);
+                comando.CommandType = CommandType.Text;
+                parametro = new SqlParameter("@idPersona", gsIdPerson);
+                comando.Parameters.Add(parametro);
+                try
+                {
+                    RowsAffected = comando.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+
+                    RowsAffected = 0;
+                }
+            }
+                return RowsAffected;
+        }
+
+        public DataTable Listar()
+        {
+            using (cnx = new SqlConnection(cadenaConexion))
+            {
+                try
+                {
+                    DataTable listar = new DataTable();
+                    cnx.Open();
+                    SqlCommand comando = new SqlCommand("select * from tbl_persona where idTipoPersona = 1", cnx);
+                    comando.CommandType = CommandType.Text;
+                    adaptador = new SqlDataAdapter(comando);
+                    adaptador.Fill(listar);
+                    return listar;
+                }
+                catch (Exception)
+                {
+
+                    return null;
+                }
+            }
+                
+
+        }
+
     }
 }
+

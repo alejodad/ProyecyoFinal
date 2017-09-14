@@ -76,13 +76,21 @@ namespace Vistas
 
             try
             {
+                
                 smtp.Send(mail);
+                PanelAlerta.Visible = true;
+
             }
             catch (Exception ex )
             {
 
-                ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "aletaFailMensaje", "window.onload = function(){ alert ('El correo no se envio ');};", true);
+                pnlAlertaError.Visible = true;
             }
+        }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
         }
     }
 }

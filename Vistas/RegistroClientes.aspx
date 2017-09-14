@@ -7,12 +7,61 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Registro Cliente</title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
+
+    <style type="text/css">
+        body { padding-top: 70px; }
+    </style>
 </head>
+     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <!-- El logotipo y el icono que despliega el menú se agrupan
+       para mostrarlos mejor en los dispositivos móviles -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse"
+            data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Desplegar navegación</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Logotipo</a>
+  </div>
+ 
+  <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+       otro elemento que se pueda ocultar al minimizar la barra -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <li ><a href="Inicio.aspx">Inico</a></li>
+      <li class="active"><a href="#">Registro Clientes</a></li>
+      <li><a href="RegistroMensajeros.aspx">Registro Mensajeros</a></li>      
+    </ul>
+  </div>
+</nav>
 <body>
     <form id="form1" runat="server">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+
+                    <asp:Panel runat="server" Visible="false" ID="PanelAlerta">
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>Buen trabajo!</strong>
+                            <label>
+                               La accion se ejecuto correctamente
+                            </label>
+                        </div>
+                    </asp:Panel>
+
+                    <asp:Panel ID="pnlAlertaError" runat="server" Visible="false">
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>Oppssss!</strong>
+                            <label>
+                                Ocurrio un error al intentarejecutar la accion. 
+                            </label>
+                        </div>
+                    </asp:Panel>
+
                     <div class="form-group">
                         <asp:TextBox ID="txtid" CssClass="form-control" runat="server" Visible="false" />  
                     </div>
@@ -26,7 +75,7 @@
                     </div>
                     <div class="form-group">
                         <asp:Label Text="Edad Persona" runat="server" />
-                        <asp:TextBox ID="txtEdad" CssClass="form-control" runat="server" placeholder="Ejempl: Cliente 22" />  
+                        <asp:TextBox ID="txtEdad" CssClass="form-control" runat="server" placeholder="Ejempl: Cliente 22" TextMode="Number" />  
                     </div>
                     <div class="form-group">
                         <asp:Label Text="Usuario" runat="server" />

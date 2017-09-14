@@ -37,10 +37,11 @@ namespace Vistas
             {
                 var persona = instaciaBD.tbl_persona.Where(x => x.usuarioPersona== user).FirstOrDefault();
 
-                ICryptoService encripto = new PBKDF2();//INSTANCIO EL ALGORITMO 
-                string pasEncriptada = encripto.Compute(pas, persona.salt);
+               
                 if (persona!= null)
                 {
+                    ICryptoService encripto = new PBKDF2();//INSTANCIO EL ALGORITMO 
+                    string pasEncriptada = encripto.Compute(pas, persona.salt);
                     if (encripto.Compare( persona.contrasenaPersona , pasEncriptada))
                     {
                         FormsAuthentication.SetAuthCookie(persona.nombrePersona +" "+ persona.apellidoPersona, true);                       
